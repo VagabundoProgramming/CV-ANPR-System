@@ -4,9 +4,8 @@ import cv2
 import os
 
 def find_relevant_contours(filename):
-    img = cv2.cvtColor(cv2.imread(filename), cv2.COLOR_BGR2RGB)
-    grayimg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    ret, thres = cv2.threshold(grayimg, 127, 255, 0)
+    img = cv2.cvtColor(cv2.imread(filename), cv2.COLOR_BGR2GRAY)
+    ret, thres = cv2.threshold(img, 127, 255, 0)
     contours, hierarchy = cv2.findContours(thres, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     new_contours = []
     for i, c in enumerate(contours):
