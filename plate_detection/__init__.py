@@ -1,3 +1,8 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import cv2
+import os
+
 def find_relevant_contours(filename):
     img = cv2.cvtColor(cv2.imread(filename), cv2.COLOR_BGR2RGB)
     grayimg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
