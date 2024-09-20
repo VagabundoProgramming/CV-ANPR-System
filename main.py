@@ -1,3 +1,5 @@
+import plate_detection
+
 directory = "Test/Frontal/Frontal/"
 for name in os.listdir(directory)[:-1]:
     contours = find_relevant_contours(directory+name)
