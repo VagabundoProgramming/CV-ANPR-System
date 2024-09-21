@@ -91,7 +91,12 @@ image = cv2.imread('filepath', 0)
 pts = np.array(([[0, 0], [0, 1000], [1000, 00], [500, 1000]]), dtype = "float32")
 
 # Apply the four point tranform to the image without perspective
-warped = four_point_transform(image, pts, custom_resolution=[520, 110]) # [520, 110]
+warped = four_point_transform(image, pts, custom_resolution=False) 
+## Proposed Custom Resolutions ##
+# Ordinary long car numberplate:         [520, 110]
+# Ordinary tall car numberplate:         [340, 220]
+# Ordinary long frontal car numberplate: [340, 110]
+# Motorcicle numberplate:                [220, 160]
 
 # Show the original and warped images
 cv2.imshow("Original", image)
