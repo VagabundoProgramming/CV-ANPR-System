@@ -38,31 +38,13 @@ def proper_rotation(image):
     if upper_left_side_mean > lower_left_side_mean:
         image = cv2.flip(image, 0)
 
-    #print(upper_left_side_mean)
-    #print(lower_left_side_mean)
-
-    #cv2.imshow("a", upper_left_side)
-    #cv2.imshow("b", lower_left_side)
     return image
 
 
-### MAIN CODE ###
-img = cv2.imread("donkin i must.jpg")
-img = cv2.imread("mockup.png")
-img = cv2.imread("Code\mockup_flip.png")
-img = cv2.imread("mockup_r.png")
-height, width, channels = img.shape
+### MAIN CODE EXAMPLE ###
+#img = cv2.imread("image_path")
+#img = proper_rotation(img)
 
-img = proper_rotation(img)
-
-
-cv2.imshow("Amongus", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-"""
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-for x in range(0, 100, 1):
-    cv2.imshow(str(x), img)
-"""
+#cv2.imshow("Amongus", img)
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
