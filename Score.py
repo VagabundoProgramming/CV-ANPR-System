@@ -117,4 +117,3 @@ class ANPR_score():
 		# Update np_char_confusion_matrix
 		for x in range (0, 7, 1):
 			self.np_char_confusion_matrix[angle][self.val2idx[gt[x]]] [self.val2idx[pred[x]]] += 1
-
