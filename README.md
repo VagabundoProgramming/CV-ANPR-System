@@ -4,7 +4,7 @@ This is a project from the class of Computer Vision at UAB University.
 
 ## Objective
 
-The main goal of this project is to create an algorithm capable of receiving /br
+The main goal of this project is to create an algorithm capable of receiving \br
 an image of a car with its license plate visible and return the text of the  \br
 license plate. 
 
