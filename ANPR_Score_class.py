@@ -6,15 +6,17 @@ import numpy as np
 
 class ANPR_score():
 	def __init__(self):
-		self.np_guess_distr = {}#{0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0} # Number plate guess distribution
-		self.np_char_confusion_matrix = {}#np.zeros((30, 30), dtype = int)     # Number plate char_confusion_matrix
+		self.np_guess_distr = {}           # Number plate guess distribution
+		self.np_guess_distr_c = {}         # Number plate guess distribution codes
+		self.np_char_confusion_matrix = {} # Number plate char_confusion_matrix
 		self.val2idx = {"0":0, "1":1, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9, "B":10, "C":11, "D":12, "F":13, "G":14, "H":15, "J":16, "K":17, "L":18, "M":19, "N":20, "P":21, "R":22, "S":23, "T":24, "V":25, "W":26, "X":27, "Y":28, "Z":29}
 
 
 	# Reset the values of the guesses_distribution and confusion_matrix
 	def clear(self):
-		self.np_guess_distr = {} #{0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0}
-		self.np_char_confusion_matrix = {} #np.zeros((30, 30), dtype = int)
+		self.np_guess_distr = {}           # {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0}
+		self.np_guess_distr_c = {}         # {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[]}
+		self.np_char_confusion_matrix = {} # np.zeros((30, 30), dtype = int)
 		
 
 	# Returns the number of guesses on a specific angle or all of them
@@ -35,7 +37,7 @@ class ANPR_score():
 			return guesses
 
 
-	# Returns the accuracy of the algorithm across all angles
+	# Returns the accuracy of the algorithm across all angles or one specified angle
 	def char_accuracity(self, angle = None):
 		guesses = 0
 		if self.np_char_confusion_matrix == {}: #No guesses have been made
@@ -82,38 +84,53 @@ class ANPR_score():
 
 	# Return the specified part of the guess_distr
 	def guess_distr(self, angle = None):
-		if angle == None: # Return whole char_confusion_matrix
+		if angle == None: # Return whole np_guess_distr
 			return self.np_guess_distr
 		if angle not in self.np_guess_distr.keys(): # Angle not in the current scope
 			return -1
 		else:
-			return self.np_guess_distr[angle]
+			return self.np_guess_distr[angle] # Return desired part of np_guess_distr
+	
 
-	# Returns the specified part of the char_confusion_matrix
+	# Return the specified part of the guess_distr_c
+	def guess_distr_c(self, angle = None):
+		if angle == None: # Return whole np.guess_distr_c
+			return self.np_guess_distr_c
+		if angle not in self.np_guess_distr_c.keys(): # Angle not in the current scope
+			return -1
+		else:
+			return self.np_guess_distr_c[angle] # Return desired part of np_guess_distr_c
+
+
+	# Returns the specified angle of the char_confusion_matrix
 	def char_confusion_matrix(self, angle = None):
 		if angle == None: # Return whole char_confusion_matrix
 			return self.np_char_confusion_matrix
 		if angle not in self.np_char_confusion_matrix.keys(): # Angle not in the current scope
 			return -1
 		else:
-			return self.np_char_confusion_matrix[angle]
+			return self.np_char_confusion_matrix[angle] # Return desired part of char_confusion_matrix
 
+
+	# Add a guess to the class
 	def add_guess(self, gt, pred, angle):
-		if len(gt) != 7 or len(pred) != 7: # Ensure inputs are correct
+		# Ensure inputs are correct
+		if len(gt) != 7 or len(pred) != 7:
 			return -1
 
+		# Initialize if angle not in the current scope
 		if angle not in self.np_guess_distr.keys():
 			self.np_guess_distr[angle] = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0}
+			self.np_guess_distr_c[angle] = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[]}
 			self.np_char_confusion_matrix[angle] = np.zeros((30, 30), dtype = int)
+			
+		# Calculate number of individual correct char guesses
+		correct_chars = sum([1 for x in range (0, 7, 1) if gt[x] == pred[x]])
 
-		# Update np_guess_distr
-		correct_chars = 0
-		for x in range(0, 7, 1):
-			if gt[x] == pred[x]:
-				correct_chars += 1
-				
+		# Update np_guess_distr and np_guess_distr_c		
 		self.np_guess_distr[angle][correct_chars] += 1
+		self.np_guess_distr_c[angle][correct_chars].append((gt, pred))
 			
 		# Update np_char_confusion_matrix
 		for x in range (0, 7, 1):
-			self.np_char_confusion_matrix[angle][self.val2idx[gt[x]]] [self.val2idx[pred[x]]] += 1
+			self.np_char_confusion_matrix[angle][self.val2idx[gt[x]]][self.val2idx[pred[x]]] += 1
