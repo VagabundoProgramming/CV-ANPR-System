@@ -1,4 +1,4 @@
-# CV-ANPR-System
+# CV-ANPR-System.
 
 This is a project from the class of Computer Vision at UAB University. 
 
