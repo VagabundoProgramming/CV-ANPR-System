@@ -12,6 +12,19 @@ This project only tries to analyze spanish license plates.
 
 ## Structure
 
+This repository is "objetivo" separated in to two folders, Code and Images.  <br>
+Within the image folders we have thae dataset we have used to evaluate the model <br>
+classified by angle alongside images for template matching.
+
+In the Code folder we have all the code that we have used to create and evaluate <br>
+the model.
+
+If you want to use this code, download the code folder, and use the main to call the rest of the functions. 
+You will also need to create a folder with images in your folder with the code.You can use the ones we provide here.
+
+
+## Methodology
+
 The workflow we use for the detection and retrieval of information is the following:
 
 
