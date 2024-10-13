@@ -1,3 +1,5 @@
+import cv2
+
 def template_matching(img_rgb, figures_directory):
     img = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
     img =  cv2.resize(img, (520, 110)) #Resizing the plate to its spectating shape
