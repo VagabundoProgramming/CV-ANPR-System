@@ -1,4 +1,5 @@
 import cv2
+import os
 
 def template_matching(img_rgb, figures_directory):
     img = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
