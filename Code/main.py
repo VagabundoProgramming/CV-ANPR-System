@@ -4,6 +4,10 @@ import cv2
 import os
 
 from plate_detection import *
+from isomorphism_func import *
+from number_plate_template_matching import *
+from display_results import *
+from image_rotation import *
 
 directory = "Images/Test/Front/"
 for name in os.listdir(directory):
