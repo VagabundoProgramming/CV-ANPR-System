@@ -2,30 +2,44 @@
 
 This is a project from the class of Computer Vision at UAB University. 
 
-## Objective
+
+### Objective
 
 The main goal of this project is to create an algorithm capable of receiving <br>
 an image of a car with its license plate visible and return the text of the  <br>
 license plate. 
 
-This project only tries to analyze spanish license plates.
-
-## Structure
-
-This repository is "objetivo" separated in to two folders, Code and Images.  <br>
-Within the image folders we have thae dataset we have used to evaluate the model <br>
-classified by angle alongside images for template matching.
-
-In the Code folder we have all the code that we have used to create and evaluate <br>
-the model.
-
-If you want to use this code, download the code folder, and use the main to call the rest of the functions. 
-You will also need to create a folder with images in your folder with the code.You can use the ones we provide here.
+We focus on spanish license plates, that is why the code and images we have  <br>
+only focus on that specific case.
 
 
-## Methodology
+### Structure
 
-The workflow we use for the detection and retrieval of information is the following:
+This repository is separated in to two folders, Code and Images.             <br>
+                                                                             <br>
+Within the image folder we have the a dataset that we used to evaluate the   <br>
+model, the images are classified by angle. We also have some other useful    <br>
+images such as individual characters for template matching.                  <br>
+                                                                             <br>
+Inside the Code folder we have all the code that we have used to create and  <br>
+evaluate our model.                                                          <br>
+
+
+### Methodology
+
+The workflow we use for this project is the following:                       <br>
+
+1. Finding Contours in the Image
+2. Detecting License Plate
+3. Applying Isomorphism
+4. Template Matching CHaracters
+
+
+### How to run
+
+By downloading this repository you should be able to modify the code so that <br>
+the file paths and executing the main.py file, yielding you results.         <br>
+You can use the car images we provide in the repository.                     <br>
 
 
 
