@@ -123,6 +123,7 @@ def char_confusion_matrix_full(score: ANPR_score):
     plt.show()
     return
 
+    # Return a text displaying the character accuracy 
 def model_char_acc(score:ANPR_score):
     message = "The model character accuracy is of:\n"
     message += str(score.char_accuracity()) + "\n\n"
@@ -132,6 +133,7 @@ def model_char_acc(score:ANPR_score):
 
     return(message)
 
+    # Return a text displaying the plate accuracy 
 def threshold_acc(score:ANPR_score, n = 7):
     message = "The models accuracy of at least " + str(n) + " characters is of:\n"
     message += str(score.plate_acc(n)) + "\n\n"
