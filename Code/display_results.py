@@ -123,6 +123,25 @@ def char_confusion_matrix_full(score: ANPR_score):
     plt.show()
     return
 
+def model_char_acc(score:ANPR_score):
+    message = "The model character accuracy is of:\n"
+    message += str(score.char_accuracity()) + "\n\n"
+    message += "For specific angles the accuracy is of:"
+    for angle in score.guess_distr().keys():
+        message += "\n" + str(angle) + ": " +  str(score.char_accuracity(angle)) 
+
+    return(message)
+
+def threshold_acc(score:ANPR_score, n = 7):
+    message = "The models accuracy of at least " + str(n) + " characters is of:\n"
+    message += str(score.plate_acc(n)) + "\n\n"
+    message += "For specific angles the accuracy of at least " +str(n) + " characters is of:"
+    for angle in score.guess_distr().keys():
+        message += "\n" + str(angle) + ": " +  str(score.plate_acc(n, angle)) 
+
+    return(message)
+
+
 
 ### TEST CODE ###
 """
@@ -135,9 +154,10 @@ for x in range (0, 100, 1):
     a.add_guess("1234BCD", "1234BCD", "above")
 a.add_guess("1234BCD", "BBBBBBB", "b")
 
-
+"""
 #plot_result_distr_by_angle(a)
 #plot_results_distr(a)
-char_confusion_matrix_by_angle(a)
+#char_confusion_matrix_by_angle(a)
 #char_confusion_matrix_full(a)
-"""
+#print(model_char_acc(a))
+#print(threshold_acc(a, 7))
