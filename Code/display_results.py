@@ -5,7 +5,6 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-#from sklearn.metrics import plot_confusion_matrix
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from sklearn.svm import SVC
 from ANPR_Score_class import ANPR_score
