@@ -136,7 +136,7 @@ def model_char_acc(score:ANPR_score):
     # Return a text displaying the plate accuracy 
 def threshold_acc(score:ANPR_score, n = 7):
     message = "The models accuracy of at least " + str(n) + " characters is of:\n"
-    message += str(score.plate_acc(n)) + "\n\n"
+    message += str(score.plate_acc(n = n, angle = None)) + "\n\n"
     message += "For specific angles the accuracy of at least " +str(n) + " characters is of:"
     for angle in score.guess_distr().keys():
         message += "\n" + str(angle) + ": " +  str(score.plate_acc(n, angle)) 
