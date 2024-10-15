@@ -115,7 +115,8 @@ class ANPR_score():
 	# Add a guess to the class
 	def add_guess(self, gt, pred, angle):
 		# Ensure inputs are correct
-		if len(gt) != 7 or len(pred) != 7:
+		gt = gt[:7]
+		if len(pred) != 7:
 			return -1
 
 		# Initialize if angle not in the current scope
